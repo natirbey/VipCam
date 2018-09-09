@@ -1,0 +1,33 @@
+
+**********************************************************************
+
+CREDITS for stupid-ftpd
+
+**********************************************************************
+
+
+Since people really use it and improve it(!) I would like
+to say a few Thank-Yous to:
+
+Luca Montecchiani
+  (for the Teamsystem patch and extended OS-support)
+
+Paolo Marinsalti
+  (for saving everyone from zombies; cleanchild fix)
+
+Victor Lima
+  (for debugging the PASV command)
+
+Ben Menking
+  (for RedHat support)
+
+SxYNX
+  (for sending me many exploits)
+
+Kim B. Heino
+  (for PASV-transfer patch concerning a file descriptor leak)
+
+Good job!
+Once again, thanks!
+
+Martin (Cinek)

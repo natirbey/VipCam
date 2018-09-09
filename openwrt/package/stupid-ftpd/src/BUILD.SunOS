@@ -1,0 +1,6 @@
+PATH=$PATH:/usr/local/bin:/usr/ucb:/usr/ccs/bin
+export PATH
+rm *.o stupid-ftpd.SunOS
+make -f Makefile.SunOS
+strip stupid-ftpd.SunOS
+chmod 777 stupid-ftpd.SunOS

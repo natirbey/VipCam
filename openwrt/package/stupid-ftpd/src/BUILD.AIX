@@ -1,0 +1,4 @@
+rm *.o stupid-ftpd.AIX
+make -f Makefile.AIX
+strip stupid-ftpd.AIX
+chmod 777 stupid-ftpd.AIX

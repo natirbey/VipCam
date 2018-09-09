@@ -1,0 +1,263 @@
+
+**********************************************************************
+*								
+* CHANGES
+*
+* stupid-ftpd
+* -----------
+*
+**********************************************************************
+
+----------------------------------------------------------------------
+1.5beta   2005/12/30 changes:
+- fixed MKD /<path> behavior
+- fix RMD allowed to erase "." (perhaps not a good idea)
+
+----------------------------------------------------------------------
+1.4beta   2003/01/19 changes:
+- implemented feature request #565895
+  (mozilla expected answer 550 if RETR is
+   applied on a directory)
+- BUGFIX #593120: crash with too long directory names (critical)
+- BUGFIX #604783: allowed / in mkdir, chdir
+- BUGFIX #670685: several command line buffer overflow fixes
+- BUGFIX #670686: several interactive mode buffer overflows
+- BUGFIX #670688: configuration file parser buffer overflow
+
+----------------------------------------------------------------------
+1.3beta     2002/05/26 changes:
+- global chroot support, at server level
+- bugfixes in MKD ftp-command
+- PID-file feature
+- support for more OSes
+- merge with: stupid-ftpd-1.diff by
+  TeamSystem Spa <sysline@teamsystem.com>
+
+----------------------------------------------------------------------
+1.2.1beta        2001/05/20 changes:
+- further security fixes (against local exploits)
+- PASV mode fix (getmyip)
+
+----------------------------------------------------------------------
+1.2beta        2001/04/22 changes:
+- security fix (against local exploits)
+
+----------------------------------------------------------------------
+1.1beta        2001/04/22 changes:
+- sys/time.h and time.h will be included 
+  together now, seems to be a problem on RH,
+  I hope I can get to know more about this,
+  or I will need autoconf/make soon; I need
+  more feedback about this
+- fixed BUG #412406 (ls.c: path analysis)
+  I hope it is still stable now
+- removed some trash from do_list
+
+----------------------------------------------------------------------
+1.1pre         2001/03/26 changes:
+stupid-ftpd.c,ftpdconfig.c,command.c:
+- implemented the BAN-command
+- implemented the UNBAN-command
+
+----------------------------------------------------------------------
+1.0beta         2001/03/23 changes:
+
+global:
+stupid-ftpd is the new name of my ftp server 
+daemon.
+
+stupid-ftpd.c,ftpdconfig.c,ftpcommand.c:
+- preparing for WINSOCK support (doesn't want
+  to work, stupid win)
+- implemented DELE ftp-command
+
+command.c:
+- extended the help-command
+
+Makefile:
+- 'make install' included
+
+new files:
+Makefile.win,Cinek-FTPD.INI:
+- for future WINSOCK support
+
+ls.c,ls.h:
+- is supposed to replace the ugly system call
+  with shell and pipe combination to make
+  stupid-ftpd more secure
+- got an idea how to implement simple regular 
+  expressions (*,?)
+
+----------------------------------------------------------------------
+0.9beta10 	2000/07/14 changes:
+
+ftpcommand.c:
+- fixed PASV support (local IP was wrong)
+
+ftpdconfig.c:
+- rewritten function getmyip()
+
+stupid-ftpd.c:
+- removed local-IP output (not needed any more)
+
+----------------------------------------------------------------------
+0.9beta9 	2000/06/14 changes:
+
+ftpcommand.c:
+- added MKD-ftp-command (making directories); upload rights needed
+- added RMD-ftp-command (removing directories); erase rights needed
+
+ftpdconfig.c:
+- new permission type: erase (currently: only erasing directories)
+
+global:
+- included a pedantic target and removed many warnings
+
+----------------------------------------------------------------------
+0.9beta8 	2000/05/30 changes:
+
+ftpcommand.c:
+- fixed bug in return-strings (SIGSEG)
+- now checking if LIST in progress
+- fixed PASV-ftp-command (0.0.0.0 was returned)
+- fixed LOGOUT log-message (time)
+
+ftpdconfig.c:
+- added getmyip()-function
+- parsecmdline called as first function now
+  (INIT-command fixed)
+
+command.c:
+- added DOWN-command  (restricted server mode)
+- added FDOWN-command (server-down-mode)
+
+Makefiles:
+- added target debug (now it'll make code without
+  the debug options at default)
+
+----------------------------------------------------------------------
+0.9beta7 	2000/05/25 changes:
+
+ftpcommand.c:
+- bug on calculating %'s fixed
+- removed some warnings
+- implemented ABOR command
+- now checking if a download is in progress
+  before starting a new one
+
+command.c:
+- implemented INIT command (restarts/reinits server)
+- short help text on invalid command
+
+global:
+- user_return() now in use (internal)
+  (more IDs for ftperror.h)
+- stupid-ftpd now understands 20 FTP-commands !!!
+
+----------------------------------------------------------------------
+0.9beta6 	2000/05/21 changes:
+
+ftpcommand.c:
+- implemented PASV command
+  (i hope it works right)
+
+global:
+- security checks
+
+----------------------------------------------------------------------
+0.9beta5 	2000/05/08 changes:
+
+command.c:
+- added REG command (lists registered users)
+- added ADD command (adds a registered user)
+- added DEL command (removes a user)
+- fixed SIGSEGs on missing parameters (ADD,DEL,ROOT)
+- added PERM command (sets user's permissions)
+
+ftpdconfig.c:
+- now shows registered users at startup
+- added a "message on quit" key
+  (removed compiled-in message)
+- splitted up setpermissions to have a translation routine
+
+ftpcommand.c:
+- removed leading spaces from motd
+- forked LIST command
+- marker return function defined
+  (will be extended)
+- sending motd/byemsg through user_spool function
+- removed bug which allowed to chdir into files
+- replaced return's with exit's in do_list()
+- implemented NLST
+
+global changes:
+- removed some old comments
+
+----------------------------------------------------------------------
+
+0.9beta4 	2000/04/18 changes:
+ftpcommand.c:
+- fixed LIST command, i hope
+- removed spaces from motd listing
+- gives a HTTP-access error
+
+command.c:
+- added ROOT command, it lets you change a user's
+  server root
+
+Remark:
+stupid-ftpd runs pretty stable now.
+Test passed (stupid-ftpd has been running for 1 week now).
+No SIGSEGs, no hanging, no problems.
+
+----------------------------------------------------------------------
+
+0.9beta3 	2000/04/04 changes:
+ftpcommand.c:
+- removed 2 SIGSEGs
+- added a transfer-timeout handler for uploads
+- more infos on download/upload
+- allowed connections to IPs without a nic-entry
+- file sizes set to long
+- user home directory handler changed
+- implemented NOOP
+- more timeouts to avoid DOS-attacks
+
+command.c:
+- improved "help"-command
+
+stupid-ftpd.c:
+- log a server restart
+
+----------------------------------------------------------------------
+
+0.9beta2 	2000/03/30 changes:
+
+ftpcommand.c:
+- server ignores spaces after the login-name (e.g.: 'USER name ')
+- implemented CDUP command (mapped to CDW ..)
+- beautified logfile layout, included LOGOUTs (kill_connection)
+- fixed Solaris port
+
+command.c
+- removed IP-info from LIST command
+- added WHO command which displays IP-info now
+
+stupid-ftpd.conf:
+- added a few "attention"-remarks
+
+- added stupid-ftpd to CVS
+
+----------------------------------------------------------------------
+
+0.9beta		2000/03/30 initial release
+
+global:
+- restructured the old sources (more files, more headers)
+- 2 Makefiles (Linux+Solaris)
+- renamed the project to stupid-ftpd
+- written a README file
+- extended configuration possibilities (from #define -> .conf)
+- added some (useful) comments to stupid-ftpd.conf
+
+----------------------------------------------------------------------
