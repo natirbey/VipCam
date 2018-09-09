@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Настройка VipBox</title>
+<link href="jquery-mobile/jquery.mobile.structure.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.theme.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile.min.js" type="text/javascript"></script>
+<!-- Телефон -->
+<link href="css/tel_port.css" rel="stylesheet" type="text/css" media="only screen and (max-width:320px) and (orientation:portrait)">
+<link href="css/tel_land.css" rel="stylesheet" type="text/css" media="only screen and (max-width:320px) and (orientation:landscape)">
+<!-- Планшет -->
+<link href="css/plan_port.css" rel="stylesheet" type="text/css" media="only screen and (min-width:321px) and (max-width:768px) and (orientation:portrait)">
+<link href="css/plan_land.css" rel="stylesheet" type="text/css" media="only screen and (min-width:321px) and (max-width:768px) and (orientation:landscape)">
+<!-- Рабочий стол -->
+<link href="css/dest.css" rel="stylesheet" type="text/css" media="only screen and (min-width:769px)">
+</head>
+<body>
+<div data-role="content">
+ <a href="wi-fi.html" rel="external" ><canvas id="canvas"></canvas></a>
+ <a href="record.html" rel="external"><canvas id="canvas2"></canvas></a>
+ <a href="help.html" rel="external"><canvas id="canvas3"></canvas></a>
+ <a href="ipcam.html" rel="external"><canvas id="canvas4"></canvas></a>
+<a href="https://disk.yandex.ru" rel="external"><canvas id="canvas5"></canvas></a>
+<!--<a href="storage.html" rel="external"><canvas id="canvas5"></canvas></a> -->
+ <a href="3g.html" rel="external"><canvas id="canvas6"></canvas></a>
+ </div>
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+var can1 = document.getElementById("canvas"); 
+var can2 = document.getElementById("canvas2"); 
+var can3 = document.getElementById("canvas3");
+var can4 = document.getElementById("canvas4");
+var can5 = document.getElementById("canvas5");
+var can6 = document.getElementById("canvas6");
+var x = can1.width/2;
+var y = can1.height/2;
+
+var con1 = can1.getContext("2d");
+ con1.beginPath();
+ con1.fillStyle = "rgba(250,250,250,1)";
+ con1.strokeStyle = "rgba(250,250,250,1)";
+ con1.font = "35px impact";
+ con1.textAlign = "center";
+ con1.textBaseline = "middle";
+ con1.fillText("WI-FI", x, y);
+ con1.shadowColor="rgba(250,250,250,1)";
+ con1.shadowOffsetX=0;
+ con1.shadowOffsetY=0;
+ con1.shadowBlur=10;
+ con1.strokeText("WI-FI",x,y);
+ con1.restore();
+ 
+ var con2 = can2.getContext("2d");
+ con2.beginPath();
+ con2.fillStyle = "rgba(250,250,250,1)";
+ con2.strokeStyle = "rgba(250,250,250,1)";
+ con2.font = "35px impact";
+ con2.textAlign = "center";
+ con2.textBaseline = "middle";
+ con2.fillText("ЗАПИСЬ", x, y);
+ con2.shadowColor="rgba(250,250,250,1)";
+ con2.shadowOffsetX=0;
+ con2.shadowOffsetY=0;
+ con2.shadowBlur=10;
+ con2.strokeText("ЗАПИСЬ",x,y);
+ con2.restore();
+
+ var con3 = can3.getContext("2d");
+ con3.beginPath();
+ con3.fillStyle = "rgba(250,250,250,1)";
+ con3.strokeStyle = "rgba(250,250,250,1)";
+ con3.font = "35px impact";
+ con3.textAlign = "center";
+ con3.textBaseline = "middle";
+ //con3.fillText("ALARM", x, y);
+ con3.fillText("ПОМОЩЬ", x, y);
+ con3.shadowColor="rgba(250,250,250,1)";
+ con3.shadowOffsetX=0;
+ con3.shadowOffsetY=0;
+ con3.shadowBlur=10;
+ //con3.strokeText("ALARM",x,y);
+ con3.strokeText("ПОМОЩЬ",x,y);
+ con3.restore();
+ 
+ var con4 = can4.getContext("2d");
+ con4.beginPath();
+ con4.fillStyle = "rgba(250,250,250,1)";
+ con4.strokeStyle = "rgba(250,250,250,1)";
+ con4.font = "35px impact";
+ con4.textAlign = "center";
+ con4.textBaseline = "middle";
+ con4.fillText("КАМЕРА", x, y);
+ con4.shadowColor="rgba(250,250,250,1)";
+ con4.shadowOffsetX=0;
+ con4.shadowOffsetY=0;
+ con4.shadowBlur=10;
+ con4.strokeText("КАМЕРА",x,y);
+ con4.restore();
+ 
+ var con5 = can5.getContext("2d");
+ con5.beginPath();
+ con5.fillStyle = "rgba(250,250,250,1)";
+ con5.strokeStyle = "rgba(250,250,250,1)";
+ con5.font = "35px impact";
+ con5.textAlign = "center";
+ con5.textBaseline = "middle";
+ con5.fillText("ХРАНИЛИЩЕ", x, y);
+ con5.shadowColor="rgba(250,250,250,1)";
+ con5.shadowOffsetX=0;
+ con5.shadowOffsetY=0;
+ con5.shadowBlur=10;
+ con5.strokeText("ХРАНИЛИЩЕ",x,y);
+ con5.restore();
+ 
+ var con6 = can6.getContext("2d");
+ con6.beginPath();
+ con6.fillStyle = "rgba(250,250,250,1)";
+ con6.strokeStyle = "rgba(250,250,250,1)";
+ con6.font = "35px impact";
+ con6.textAlign = "center";
+ con6.textBaseline = "middle";
+ con6.fillText("3G/4G", x, y);
+ con6.shadowColor="rgba(250,250,250,1)";
+ con6.shadowOffsetX=0;
+ con6.shadowOffsetY=0;
+ con6.shadowBlur=10;
+ con6.strokeText("3G/4G",x,y);
+ con6.restore();
+ });
+</script>
+</html>

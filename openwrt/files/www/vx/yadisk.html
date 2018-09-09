@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Документ без названия</title>
+<link href="jquery-mobile/jquery.mobile.structure.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.theme.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="js/ya.js"></script>
+</head>
+<body onload="ya()">
+<div data-role="page" id="yadisk">
+  <div data-role="header">
+  <a href="index.html" data-role="button" data-icon="home" rel="external">На главную</a>
+    <h1>Настройка Яндекс Диска</h1>
+  </div>
+<form id="forms" method="post" action="javascript:void(null);" onsubmit="call()">
+  <div data-role="fieldcontain">
+    <label for="textinput">Логин:</label>
+    <input type="text" name="textinput" placeholder="yandex@yandex.ru" id="textinput" value=""  />
+  </div>
+  <div data-role="fieldcontain">
+    <label for="passwordinput">Пароль:</label>
+    <input type="password" name="passwordinput" placeholder="12345678" id="passwordinput" value=""  />
+  </div>
+  <div data-role="fieldcontain">
+    <label for="flipswitch">Автоподключение:</label>
+    <select name="flipswitch" id="flipswitch" data-role="slider">
+      <option value="0">Выкл</option>
+      <option value="1">Вкл.</option>
+    </select>
+  </div>
+  <!-- <div data-role="controlgroup" data-type="horizontal">
+    <input onClick="home()" type="button" value="На главную" data-icon="home" data-iconpos="left" />
+    <input type="submit" value="Сохранить" data-icon="arrow-r" data-iconpos="right" />
+  </div> -->
+  <div data-role="footer"  data-position="fixed">
+   <a href="storage.html" data-role="button" data-icon="back" rel="external">Назад</a>
+	<input type="submit" value="Сохранить" data-icon="arrow-r" class="ui-btn-right" data-iconpos="right"/>
+  </div>
+</form>
+</div>
+</body>
+<script type="text/javascript" language="javascript">
+    function call() {
+      var msg   = $('#forms').serialize();
+        $.ajax({type: 'POST',url: 'cgi-bin/ya.cgi',data: msg,success: function(data) {$('.results').html(data);},error:  function(xhr, str){alert('??????: ' + xhr.responseCode);}});
+    }
+   function home() {
+	document.location.href = "index.html";
+}
+  function ya() {
+document.getElementById('textinput').value = login;
+document.getElementById('passwordinput').value = pass;
+if (mount == 1) $("#flipswitch option[value='1']").prop("selected",true);
+else $("#flipswitch option[value='0']").prop("selected",true);
+$("#flipswitch").slider('refresh');
+}
+</script>
+</html>
