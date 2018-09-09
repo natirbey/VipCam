@@ -1,8 +1,0 @@
-NOTDETECTED="Не обнаружено ни одного устройства"
-NODEVICE="3G/4G-модема не обнаружено"
-PINERROR="Ошибка ПИН кода"
-CONNECTED="Подключено"
-CONNECT="Подключение"
-DISCONNECTED="Отключено"
-DISCONNECT="Отключить"
-NOINFO="Нет информации"

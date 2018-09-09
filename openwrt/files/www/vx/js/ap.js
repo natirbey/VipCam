@@ -1,1 +1,0 @@
-var apes = "ap1,ap2,ap3"

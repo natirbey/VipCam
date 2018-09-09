@@ -1,1 +1,0 @@
-var vidimost=200
