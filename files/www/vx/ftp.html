@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>CAM</title>
+<link href="jquery-mobile/jquery.mobile.structure.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.theme.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="js/ftp.js"></script>
+<!-- Телефон -->
+<link href="css/plan_port.css" rel="stylesheet" type="text/css" media="only screen and (max-width:320px) and (orientation:portrait)">
+<link href="css/plan_land.css" rel="stylesheet" type="text/css" media="only screen and (max-width:320px) and (orientation:landscape)">
+<!-- Планшет -->
+<link href="css/plan_port.css" rel="stylesheet" type="text/css" media="only screen and (min-width:321px) and (max-width:768px) and (orientation:portrait)">
+<link href="css/plan_land.css" rel="stylesheet" type="text/css" media="only screen and (min-width:321px) and (max-width:768px) and (orientation:landscape)">
+<!-- Рабочий стол -->
+<link href="/css/dest.css" rel="stylesheet" type="text/css" media="only screen and (min-width:769px)">
+</head> 
+<body style="background-color:#323232;">
+<a id="ftp1" href="ftp://"+ip><canvas id="ftp"></canvas></a>
+<!-- <canvas id="ftp"></canvas> -->
+<a href="https://disk.yandex.ru"><canvas id="ya"></canvas></a> 
+</body> 
+<!-- <script language="javascript" type="text/javascript" src="functions.js"></script>  -->
+<script type="text/javascript">
+$(document).ready(function() {
+$("#ftp").css('backgroundColor', '#353232');
+$("#ya").css('backgroundColor', '#353232');
+$("#ftp1").attr("href","ftp://"+ip);
+var x = window.window.innerWidth;
+var y = window.window.innerHeight;
+var canftp = document.getElementById("ftp"); 
+var canya = document.getElementById("ya");
+var xl = canftp.width/2;
+var yl = canftp.height/2;
+var canftp = canftp.getContext("2d"); 
+ canftp.beginPath(); 
+ canftp.lineWidth =5;
+ canftp.strokeStyle="rgba(150,150,150,1)";
+ canftp.fillStyle = "rgba(150,150,150,1)"; 
+ canftp.font = "20px impact"; 
+ canftp.textAlign = "center"; 
+ canftp.textBaseline = "bottom"; 
+ canftp.fillText("Локальное хранилище", 150, 85);
+ 
+ var canya = canya.getContext("2d");
+ canya.beginPath();
+ canya.fillStyle = "rgba(150,150,150,1)";
+ canya.font = "20px impact";
+ canya.textAlign = "center";
+ canya.textBaseline = "bottom";
+ canya.fillText("Яндекс.Диск", 150, 85);
+ canya.restore(); 
+ 
+/* $("#hd").tap(function(){
+	$.ajax({
+                url: "http://192.168.1.1/cgi-bin/5.cgi",
+                cache: false,              
+                crossDomain: true,
+                success: function(html){
+				window.location.href='main.html';
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+				alert("Ошибка");
+				location.reload();
+				}
+		});
+	});
+	
+$("#sd").tap(function(){
+	$.ajax({
+                url: "http://192.168.1.1/cgi-bin/6.cgi",
+                cache: false,              
+                crossDomain: true,
+                success: function(html){
+				window.location.href='main.html';
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+				alert("Ошибка");
+				location.reload();
+				}
+		});
+	}); */
+});
+
+</script> 
+</html> 
+
