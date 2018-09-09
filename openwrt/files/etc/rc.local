@@ -1,0 +1,37 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+#export SSL_CERT_DIR=/etc/ssl/certs
+#source /etc/profile
+#cp /usr/share/3g/recovery.html /usr/share/3g/index.html
+#/etc/init.d/3ginfo restart
+echo 18 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio18/direction
+echo 1 > /sys/class/gpio/gpio18/value
+sleep 3
+cd /tmp
+mkdir ya_time
+mkdir ya_mot
+#mkdir storage
+#chmod 777 storage
+mkdir USB
+chmod 777 USB
+chmod 777 ya_time
+chmod 777 ya_mot
+touch hour.txt
+touch hour_st.txt 
+chmod 777 hour_st.txt
+chmod 777 hour.txt
+#chgrp -R web /tmp/storage
+#chown ipcam /tmp/storage
+ln -s /tmp/USB /tmp/storage
+echo 1 >> /root/rebut
+mkdir /tmp/USB/CAM
+chmod 777 /tmp/USB/CAM
+cd /root
+./mount.sh
+./curl.sh & 
+./time_cikl.sh &
+./ftpcam
+./ftp -f /etc/stupid-ftpd/stupid-ftpd.conf
+./wifi.sh &
+exit 0

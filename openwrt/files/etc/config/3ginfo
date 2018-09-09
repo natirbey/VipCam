@@ -1,0 +1,7 @@
+
+config 3ginfo
+	option http_port '80'
+	option qos '0'
+	option language 'ru'
+	option device '/dev/ttyUSB2'
+
