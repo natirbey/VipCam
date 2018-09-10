@@ -1,0 +1,18 @@
+
+stupid-ftpd
+
+
+TODO:
+-----
+
+- temp-bans
+- STAT command to get the actual infos on current downloads
+  (replacing the periodical transfer messages; but how ?)
+- dynamic timeout settings
+- daemon only release (a few #define's)
+
+
+MAYBE-TODO:
+-----------
+- auto ban
+- ip-check on PORT-command (might block cross transfers?)

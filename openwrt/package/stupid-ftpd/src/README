@@ -1,0 +1,46 @@
+
+----------------------------------------------------------------------
+README file for stupid-ftpd
+
+current version: 1.0beta, 2001/03/23
+
+----------------------------------------------------------------------
+
+
+* Compilation:
+Look into the Makefile first !
+
+
+Linux:   make
+Solaris: make -f Makefile.Solaris
+Windows: NOT SUPPORTED YET !!!
+
+After successful compilation type:
+
+Linux:   make install
+Solaris: make -f Makefile.Solaris install
+Windows: NOT SUPPORTED YET !!!
+
+* Configuration (DON'T FORGET IT!!!):
+
+The file stupid-ftpd.conf is a template for
+your configuration. It is self-explaining.
+And I think, it is very easy.
+Copy the file somewhere and customize it.
+
+
+* Running:
+
+Type:
+stupid-ftpd [-f conf-file] [-p pid-file]
+
+Without the -f option stupid-ftpd expects the configuration
+in /etc/stupid-ftpd/stupid-ftpd.conf (Linux/Unix).
+
+With the -p option you can specify the pid-file, which you
+would like to use. On default no pid-file will be used.
+
+----------------------------------------------------------------------
+
+Have fun with it.
+Cinek

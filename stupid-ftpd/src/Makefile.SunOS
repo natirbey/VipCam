@@ -1,0 +1,33 @@
+
+#
+#
+# Makefile for the Solaris version of stupid-ftpd
+#
+#
+#
+
+
+CC=gcc
+OBJS=ftpcommand.o ftpdconfig.o command.o ls.o stupid-ftpd.o
+DOBJS=ftpcommand.do ftpdconfig.do command.do ls.do stupid-ftpd.do
+LIBS=-lxnet
+CFLAGS=-O2 -Wall
+DCFLAGS=-g -DDEBUG -Wall
+EXEC=stupid-ftpd.SunOS
+
+.SUFFIXES: .c .o .do
+
+all: $(OBJS)
+	$(CC) $(CFLAGS) -o $(EXEC) $(OBJS) $(LIBS)
+
+debug: $(DOBJS)
+	$(CC) $(DCFLAGS) -o $(EXEC) $(DOBJS) $(LIBS)
+
+clean:
+	rm -f $(OBJS) $(DOBJS) $(EXEC) *~
+
+.c.o:
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+.c.do:
+	$(CC) $(DCFLAGS) -c -o $@ $<

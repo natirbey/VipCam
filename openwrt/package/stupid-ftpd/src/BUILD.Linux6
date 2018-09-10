@@ -1,0 +1,4 @@
+rm *.o
+make -f Makefile.Linux6
+strip stupid-ftpd.Linux6
+chmod 777 stupid-ftpd.Linux6

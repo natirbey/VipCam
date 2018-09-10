@@ -1,0 +1,447 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Настройка сети</title>
+<link href="jquery-mobile/jquery.mobile.structure.min.css" rel="stylesheet" type="text/css">
+<link href="jquery-mobile/jquery.mobile.theme.min.css" rel="stylesheet" type="text/css">
+<script src="jquery-mobile/jquery-1.11.3.min.js" type="text/javascript"></script>
+<script src="jquery-mobile/jquery.mobile.min.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="js/wifi.js"></script>
+<script language="javascript" type="text/javascript" src="js/wifi_full.js"></script>
+<script language="javascript" type="text/javascript" src="js/wifi_sta.js"></script>
+<script language="javascript" type="text/javascript" src="js/lan.js"></script>
+</head>
+<body onload="net()">
+<div data-role="page" >
+  <div data-role="header" data-position="fixed">
+  <h1>Режим восстановления</h1>
+  </div>
+  <div data-role="content" id="content">
+  <form id="forms" method="post" action="javascript:void(null);" onsubmit="call()">
+	<div data-role="fieldcontain">
+    <label for="vidimost">Режим восстановления (с):</label>
+    <input type="number" name="vidimost" placeholder="10" id="vidimost" value="10"  />
+  </div>
+  <hr>
+  <h3><strong>Настройки точки доступа</strong></h3>
+      <blockquote>
+   <div data-role="fieldcontain">
+    <label for="vkl_wifi">Точка доступа:</label>
+    <select name="vkl_wifi" id="vkl_wifi" data-role="slider">
+      <option value="0">Выкл</option>
+      <option value="1">Вкл.</option>
+    </select>
+  </div>
+  <div data-role="fieldcontain">
+    <label for="channel" class="select">Номер канала:</label>
+    <select name="channel" id="channel">
+      <option value="1">Канал 1</option>
+      <option value="2">Канал 2</option>
+      <option value="3">Канал 3</option>
+      <option value="4">Канал 4</option>
+      <option value="5">Канал 5</option>
+      <option value="6">Канал 6</option>
+      <option value="7">Канал 7</option>
+      <option value="8">Канал 8</option>
+      <option value="9">Канал 9</option>
+      <option value="10">Канал 10</option>
+      <option value="11">Канал 11</option>
+      <option value="12">Канал 12</option>
+    </select>
+  </div>
+  <div data-role="fieldcontain">
+    <label for="ssid">SSID:</label>
+    <input type="text" name="ssid" placeholder="ssid" id="ssid" value="ipcam"  />
+  </div>
+  <div data-role="fieldcontain">
+    <label for="encript" class="select">Шифрование:</label>
+    <select name="encript" id="encript">
+      <option value="none">Без шифрования</option>
+      <option value="psk">WPA-PSK</option>
+      <option value="psk2">WPA2-PSK</option>
+      <option value="psk-mixed">WPA-PSK/WPA2-PSK MIXED MODE</option>
+    </select>
+  </div>
+  <div data-role="fieldcontain">
+    <label for="pass">Пароль:</label>
+    <input type="password" name="pass" placeholder="12345678" id="pass" value="12345678"  />
+  </div>
+  </blockquote>
+  <hr>
+  <h3><strong>Настройки режима клиент</strong></h3>
+	        <blockquote>
+   <div data-role="fieldcontain">
+    <label for="vkl_wifi_sta">Клиент:</label>
+    <select name="vkl_wifi_sta" id="vkl_wifi_sta" data-role="slider">
+      <option value="0">Выкл</option>
+      <option value="1">Вкл.</option>
+    </select>
+	</div>
+	
+  <div data-role="fieldcontain">
+    <label for="ssid_sta" class="select">SSID:</label>
+	<select name="ssid_sta" id="ssid_sta">
+      <option value="ap1">Загружаю...</option>
+    </select>
+  </div>
+ 
+  <div data-role="fieldcontain">
+    <label for="pass_sta">Пароль:</label>
+    <input type="password" name="pass_sta" placeholder="12345678" id="pass_sta" value="12345678"  />
+  </div>
+  </blockquote>
+  <input type="submit" value="Сохранить" data-icon="arrow-r"  data-iconpos="right"/>
+  </div> 
+</form>
+<div data-role="footer"  data-position="fixed">
+   <!-- <a href="#" id="rec" data-role="button" data-icon="arrow-l" data-iconpos="left" rel="external">В меню</a> -->
+   <div id="rec" data-role="button" data-icon="arrow-l" data-iconpos="left" rel="external">В меню</div>
+   </div> 
+</div>
+<div data-role="page" id="dialog_ok">
+  <div data-role="header" data-position="fixed">
+    <h1>Сообщение</h1> 
+  </div>
+  <div data-role="content" style="text-align:center;">
+<h1>Соединение установлено.</h1>
+ <!-- <a href="wi-fi.html" id="rec1" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Хорошо</a> -->
+ <div id="rec1" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Хорошо</div> 
+  </div>
+  <div data-role="footer"></div>
+  </div>
+  <div data-role="page" id="dialog_no_int">
+  <div data-role="header" data-position="fixed">
+    <h1 style="color:#ff0000">Ошибка!</h1>
+  </div>
+  <div data-role="content" style="text-align:center;">
+<h1 style="color:#ff0000">Нет доступа в интернет!</h1>
+ <a href="recovery.html" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Назад</a>
+  </div>
+  <div data-role="footer"></div>
+  </div>
+  
+  <div data-role="page" id="dialog_no_ip">
+  <div data-role="header" data-position="fixed">
+    <h1 style="color:#ff0000">Внимание!</h1>
+  </div>
+  <div data-role="content" id="warning" style="text-align:center;">
+<!-- <h1 style="color:#ff0000">IP адрес VIPCAM совпал с IP адресом вашей точки доступа. IP адрес VIPCAM теперь 192.168.1.200. Попробуйте ещё разок.</h1> -->
+ <!-- a href="#" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Хорошо</a> -->
+ <input onClick="go200()" type="button" value="Хорошо" data-icon="home" data-iconpos="right" />
+  </div>
+  <div data-role="footer"></div>
+  </div>
+  
+  <div data-role="page" id="dialog_no_ap">
+  <div data-role="header" data-position="fixed">
+    <h1 style="color:#ff0000">Ошибка!</h1>
+  </div>
+  <div data-role="content" style="text-align:center;">
+<h1 style="color:#ff0000">Не удалось подключиться к точке доступа. Проверьте настройки!</h1>
+ <a href="recovery.html" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Назад</a>
+  </div>
+  <div data-role="footer"></div>
+  </div>
+  
+  <div data-role="page" id="dialog_nossid">
+  <div data-role="header" data-position="fixed">
+    <h1 style="color:#ff0000">Ошибка!</h1>
+  </div>
+  <div data-role="content" style="text-align:center;">
+<h1 style="color:#ff0000">Неверный SSID!</h1>
+ <a href="recovery.html" data-role="button" rel="external" data-icon="delete" data-iconpos="right">Назад</a>
+  </div>
+  <div data-role="footer"></div>
+  </div>
+</body>
+
+<script type="text/javascript">	
+function call() {
+$("#ssid").textinput('enable');
+$("#encript").selectmenu('enable');
+$("#pass").textinput('enable');
+$("#channel").selectmenu('enable');
+$("#ssid_sta").selectmenu('enable');
+$("#pass_sta").textinput('enable');
+      var msg=$('#forms').serialize();
+        $.ajax({
+						type: 'POST',
+						url: 'cgi-bin/wifi.cgi',
+						data: msg,
+						success: function(html) {
+						if (html == 0) {
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage("#dialog_no_int", {role: "dialog"});
+						};
+						if (html == 5) {
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage("#dialog_no_ap", {role: "dialog"});
+						};
+						if (html == 8) {
+						$.ajax({
+								url: "cgi-bin/200.cgi",
+								crossDomain: true,
+								success: function(html){
+									$.ajax({
+										url: "http://192.168.1.128/web/cgi-bin/hi3510/param.cgi?cmd=setftp&cururl=http%3A%2F%2F192.168.1.128%2Fweb%2Fftp.html&-ftpserver="+html+"&-ftpport=2121&-ftpusername=&-ftppassword=&-ftpremotepath=%2F&-ftpfullstrategy=0&-ftpifmkdir=1",
+										crossDomain: true,
+										success: function(data1){
+										},       
+										error: function(xhr, ajaxOptions, thrownError) {
+										},
+										timeout: 2000
+										});
+										$("#warning").prepend('<h1>У VipCam новый адрес:'+html+'. Вы будете перенаправлены на него. Если этого не произойдёт, то нажмите "Хорошо" и введите'+html+' в строке браузера.</h1>');
+										$("body").removeClass('ui-disabled');
+							$.mobile.loading('hide');
+							//alert("IP адрес VIPCAM совпал с IP адресом вашей точки доступа. IP адрес VIPCAM теперь 192.168.1.200")
+							$.mobile.changePage("#dialog_no_ip", {role: "dialog"}); 
+								},              
+								error: function(xhr, ajaxOptions, thrownError) {
+								}
+							});
+						};
+						if (html == 1) {
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage( "#dialog_ok", { role: "dialog" });
+						$("#channel").selectmenu('disable');
+						};
+						if (html == 3) {
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage( "#dialog_nossid", { role: "dialog" });
+						};
+						if (html == 4) {
+						$("#channel").selectmenu('enable');
+						location.reload();
+						};
+						},
+						error: function(xhr, str) {
+						timerid=setInterval("ping()",2000);
+						},
+						timeout: 30000
+						});
+$("body").addClass('ui-disabled');
+$.mobile.loading("show",{
+text: "Подождите",
+textVisible: true,
+theme: "b"
+});
+}
+function ping(){            
+            $.ajax({                    
+                url: "cgi-bin/1.cgi",
+                success: function(html){                                          
+					if (html == 9) {
+					clearInterval(timerid);
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage( "#dialog_no_ap", { role: "dialog" });
+						};
+					if (html == 1) {
+						clearInterval(timerid);
+						$("body").removeClass('ui-disabled');
+						$.mobile.loading('hide');
+						$.mobile.changePage( "#dialog_ok", { role: "dialog" });
+						};
+					if (html == 8) {
+							$.ajax({
+								url: "cgi-bin/200.cgi",
+								crossDomain: true,
+								success: function(html){
+									$.ajax({
+										url: "http://192.168.1.128/web/cgi-bin/hi3510/param.cgi?cmd=setftp&cururl=http%3A%2F%2F192.168.1.128%2Fweb%2Fftp.html&-ftpserver="+html+"&-ftpport=2121&-ftpusername=&-ftppassword=&-ftpremotepath=%2F&-ftpfullstrategy=0&-ftpifmkdir=1",
+										crossDomain: true,
+										success: function(data1){
+										//alert("1235");
+										},       
+										error: function(xhr, ajaxOptions, thrownError) {
+										},
+										timeout: 2000
+										});
+										$("#warning").prepend('<h1>У VipCam новый адрес:'+html+'. Вы будете перенаправлены на него. Если этого не произойдёт, то нажмите "Хорошо" и введите'+html+' в строке браузера.</h1>');
+										$("body").removeClass('ui-disabled');
+							$.mobile.loading('hide');
+							//alert("IP адрес VIPCAM совпал с IP адресом вашей точки доступа. IP адрес VIPCAM теперь 192.168.1.200")
+							$.mobile.changePage("#dialog_no_ip", {role: "dialog"}); 
+								},              
+								error: function(xhr, ajaxOptions, thrownError) {
+								}
+							});
+						};
+				},              
+				error: function(xhr, ajaxOptions, thrownError) {
+				},
+            	     });                                                           
+};
+function home() {
+	document.location.href = "index.html";
+	};
+function go200() {
+$.ajax({
+						url: "cgi-bin/201.cgi",
+						success: function(html){
+						},              
+						error: function(xhr, ajaxOptions, thrownError) {
+						},
+						timeout: 30000
+						});              
+	};
+function net() {
+		    $.ajax({                    
+                url: "cgi-bin/ap.cgi",
+                success: function(html){
+				var arrayArea=html.split(',');
+				n=arrayArea[0];
+				if (arrayArea[1])
+				{
+				document.getElementById("ssid_sta").options[0].innerHTML=arrayArea[1];
+				$("#ssid_sta option[value='ap1']").prop("value",arrayArea[1]);
+				} 
+				for (var i = 2; i <= n; i++) {
+					document.getElementById("ssid_sta").options[i-1]= new Option(arrayArea[i], arrayArea[i]);
+				}
+				 $("#ssid_sta option[value=ssid_sta]").prop("selected",true);
+					$("#ssid_sta").selectmenu("refresh", true);
+				},              
+				error: function(xhr, ajaxOptions, thrownError) {
+				}
+            	     });						 
+document.getElementById('vidimost').value = vidimost;
+document.getElementById('ssid').value = ssid;
+document.getElementById('pass').value = pass;
+document.getElementById('pass_sta').value = pass_sta;
+if (wifi == 1) { $("#vkl_wifi option[value='1']").prop("selected",true);
+}
+else {
+$("#vkl_wifi option[value='0']").prop("selected",true);
+}
+$("#vkl_wifi").slider('refresh');
+
+if (wifi_sta == 1) { $("#vkl_wifi_sta option[value='1']").prop("selected",true);
+$("#channel").selectmenu('disable');
+}
+else 
+{ $("#vkl_wifi_sta option[value='0']").prop("selected",true);
+}
+$("#vkl_wifi_sta").slider('refresh');
+$.ajax({
+    url: "cgi-bin/time_rec.cgi",
+	timeout: 1000
+       });
+setTimeout(function(){
+	rec();
+	}, vidimost*1000);
+} 
+$("#rec").tap(function(){
+ $.ajax({      
+                url: "cgi-bin/recovery.cgi",
+                success: function(html){ 
+				if (html == 1) { 
+						$.mobile.changePage( "#dialog_no_ap", { role: "dialog" });
+						} 
+						else
+						{
+						document.location.href="index.html";
+						}
+				},             
+				error: function(xhr, ajaxOptions, thrownError) {
+				},
+				timeout: 50000
+            	     });
+        });
+		
+$("#rec1").tap(function(){
+ $.ajax({
+                url: "cgi-bin/recovery.cgi",
+                success: function(html){
+				if (html == 1) {
+						$.mobile.changePage( "#dialog_no_ap", { role: "dialog" });
+						} 
+						else
+						{
+						document.location.href="wi-fi.html";
+						}
+				},              
+				error: function(xhr, ajaxOptions, thrownError) {
+				},
+				timeout: 50000
+            	     });
+        });
+	
+function rec(){ 
+$.ajax({     
+                url: "cgi-bin/recovery.cgi",
+                success: function(html){ 
+				if (html == 1) { 
+						$.mobile.changePage( "#dialog_no_ap", { role: "dialog" });
+						}
+						else
+						{
+						location.reload();
+						}
+				},              
+				error: function(xhr, ajaxOptions, thrownError) {
+				},
+				timeout: 50000
+            	     });
+}
+switch (channel) {
+	case 1:
+$("#channel option[value='1']").prop("selected",true);
+break
+	case 2:
+$("#channel option[value='2']").prop("selected",true);
+break
+	case 3:
+$("#channel option[value='3']").prop("selected",true);
+break
+	case 4:
+$("#channel option[value='4']").prop("selected",true);
+break
+	case 5:
+$("#channel option[value='5']").prop("selected",true);
+break
+	case 6:
+$("#channel option[value='6']").prop("selected",true);
+break
+	case 7:
+$("#channel option[value='7']").prop("selected",true);
+break
+	case 8:
+$("#channel option[value='8']").prop("selected",true);
+break
+	case 9:
+$("#channel option[value='9']").prop("selected",true);
+break
+	case 10:
+$("#channel option[value='10']").prop("selected",true);
+break
+	case 11:
+$("#channel option[value='11']").prop("selected",true);
+break
+	case 12:
+$("#channel option[value='12']").prop("selected",true);
+break
+}
+switch (encript) {
+	case 'none':
+$("#encript option[value='none']").prop("selected",true);
+break
+	case 'psk':
+$("#encript option[value='psk']").prop("selected",true);
+break
+	case 'psk2':
+$("#encript option[value='psk2']").prop("selected",true);
+break
+	case 'psk-mixed':
+$("#encript option[value='psk-mixed']").prop("selected",true);
+break
+}
+</script>
+</html>
